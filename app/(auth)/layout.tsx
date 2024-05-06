@@ -1,3 +1,5 @@
+import { BackgroundBeams } from "@/components/ui/background-beams";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -5,7 +7,8 @@ export default function RootLayout({
 }>) {
   return (
     <main className="text-white min-h-screen flex items-center justify-center">
-      {children}
+      <section className="bg-[#0F172A99] rounded-xl z-10">{children}</section>
+      <BackgroundBeams />
     </main>
   );
 }

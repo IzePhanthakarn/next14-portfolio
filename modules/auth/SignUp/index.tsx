@@ -37,7 +37,7 @@ const SignUp = () => {
   };
 
   return (
-    <section className="px-6 py-10 w-[768px] bg-slate-900 rounded-xl space-y-6">
+    <section className="px-6 py-10 w-[768px] space-y-6">
       <header className="space-y-4 border-l-4 border-primary pl-3">
         <h1 className="text-2xl">Sign Up</h1>
         <p className="text-base">
