@@ -25,7 +25,7 @@ const CustomTextInput = ({
         render={({ field }) => (
           <div className={className}>
             <p>{label}</p>
-            <div className="flex w-full flex-col">
+            <div className="flex w-full flex-col mt-1">
               <FormControl>
                 <Input
                   placeholder={placeholder}

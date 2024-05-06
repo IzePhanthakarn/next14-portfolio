@@ -1,6 +1,8 @@
+import SignIn from "@/modules/auth/SignIn"
+
 const SignInPage = () => {
   return (
-    <div>SignInPage</div>
+    <SignIn />
   )
 }
 

@@ -30,7 +30,7 @@ const CustomPasswordInput = ({
       render={({ field }) => (
         <div className={className}>
           <p>{label}</p>
-          <div className="flex w-full flex-col">
+          <div className="flex w-full flex-col mt-1">
             <FormControl>
               <div className="relative">
                 <Input
@@ -45,7 +45,7 @@ const CustomPasswordInput = ({
                   type="button"
                   variant="ghost"
                   size="sm"
-                  className="absolute right-0 top-0 h-full text-slate-500 px-3 py-2 hover:bg-transparent"
+                  className="absolute right-0 top-0 h-full text-slate-500 hover:text-primary px-3 py-2 hover:bg-transparent"
                   onClick={() => setShowPassword((prev) => !prev)}
                 >
                   {showPassword ? (

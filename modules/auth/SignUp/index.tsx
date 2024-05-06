@@ -1,5 +1,3 @@
-"use client";
-
 import CustomTextInput from "@/components/input/CustomTextInput";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
@@ -7,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { signUpFormSchema, SignUpParams } from "./model";
+import { signUpFormSchema, SignUpParams, signUpDefaultValue } from "./model";
 import CustomPasswordInput from "@/components/input/CustomPasswordInput";
 import Link from "next/link";
 
@@ -16,15 +14,7 @@ const SignUp = () => {
 
   const form = useForm({
     resolver: zodResolver(signUpFormSchema()),
-    defaultValues: {
-      firstName: "",
-      lastName: "",
-      dateOfBirth: "",
-      email: "",
-      phone: "",
-      password: "",
-      confirmPassword: "",
-    },
+    defaultValues: signUpDefaultValue,
     mode: "onBlur",
   });
 
@@ -40,9 +30,7 @@ const SignUp = () => {
     <section className="px-6 py-10 w-[768px] space-y-6">
       <header className="space-y-4 border-l-4 border-primary pl-3">
         <h1 className="text-2xl">Sign Up</h1>
-        <p className="text-base">
-          Enter your details below to create your account and get started.
-        </p>
+        <p>Enter your details below to create your account and get started.</p>
       </header>
       <Form {...form}>
         <form className="space-y-3" onSubmit={form.handleSubmit(onSubmit)}>
