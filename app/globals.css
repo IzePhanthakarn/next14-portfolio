@@ -9,6 +9,10 @@
 }
 
 @layer utilities {
+  .text-16 {
+    font-size: 16px;
+  }
+
   .input-class {
     @apply text-16 placeholder:text-16 rounded-lg border border-gray-300 text-gray-900 placeholder:text-gray-500;
   }
@@ -25,7 +29,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
+    --primary: '#14B8A6';
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;
