@@ -2,8 +2,8 @@ import { z } from "zod";
 
 export const signUpFormSchema = () =>
   z.object({
-    firstName: z.string().min(1, "Please enter your first name."),
-    lastName: z.string().min(1, "Please enter your last name."),
+    firstNameD: z.string().min(1, "Please enter your first name."),
+    lastNameD: z.string().min(1, "Please enter your last name."),
     email: z.string().email("Please enter your email correctly."),
     phone: z
       .string()
@@ -22,8 +22,8 @@ export const signUpFormSchema = () =>
   );
 
 export type SignUpParams = {
-  firstName: string;
-  lastName: string;
+  firstNameD: string;
+  lastNameD: string;
   email: string;
   phone: string;
   password: string;
@@ -31,8 +31,8 @@ export type SignUpParams = {
 };
 
 export const signUpDefaultValue:SignUpParams =  {
-    firstName: "",
-    lastName: "",
+    firstNameD: "",
+    lastNameD: "",
     email: "",
     phone: "",
     password: "",

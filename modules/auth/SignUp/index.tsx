@@ -8,9 +8,16 @@ import { useForm } from "react-hook-form";
 import { signUpFormSchema, SignUpParams, signUpDefaultValue } from "./model";
 import CustomPasswordInput from "@/components/input/CustomPasswordInput";
 import Link from "next/link";
+import { AppDispatch, RootState } from "@/store/store";
+import { useDispatch, useSelector } from "react-redux";
+import { cn } from "@/lib/utils";
+import { setAccountSignUpLoading } from "@/store/account";
 
 const SignUp = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const dispatch: AppDispatch = useDispatch();
+  const isLoading = useSelector(
+    (state: RootState) => state.account.signup.isLoading
+  );
 
   const form = useForm({
     resolver: zodResolver(signUpFormSchema()),
@@ -18,12 +25,9 @@ const SignUp = () => {
     mode: "onBlur",
   });
 
-  const {
-    formState: { isValid },
-  } = form;
-
   const onSubmit = async (data: SignUpParams) => {
     console.log("data >", data);
+    dispatch(setAccountSignUpLoading(true));
   };
 
   return (
@@ -37,15 +41,13 @@ const SignUp = () => {
           <div className="flex gap-4 w-full">
             <CustomTextInput
               type="text"
-              name="firstName"
-              className="w-full"
+              name="firstNameD"
               label="First Name"
               placeholder="Enter your first name"
             />
             <CustomTextInput
               type="text"
-              name="lastName"
-              className="w-full"
+              name="lastNameD"
               label="Last Name"
               placeholder="Enter your last name"
             />
@@ -54,30 +56,24 @@ const SignUp = () => {
             <CustomTextInput
               type="text"
               name="email"
-              className="w-full"
               label="Email"
               placeholder="example@mail.com"
             />
             <CustomTextInput
               type="text"
               name="phone"
-              className="w-full"
               label="Phone"
               placeholder="Enter your phone"
             />
           </div>
           <div className="flex gap-4 w-full">
             <CustomPasswordInput
-              type="password"
               name="password"
-              className="w-full"
               label="Password"
               placeholder="Enter your password"
             />
             <CustomPasswordInput
-              type="password"
               name="confirmPassword"
-              className="w-full"
               label="Confirm password"
               placeholder="Confirm your password"
             />
@@ -86,7 +82,7 @@ const SignUp = () => {
           <div className="flex flex-col gap-4">
             <Button
               type="submit"
-              disabled={!isValid || isLoading}
+              disabled={isLoading}
               className="mt-4 h-14 bg-primary"
             >
               {isLoading ? (
@@ -103,7 +99,9 @@ const SignUp = () => {
           <div className="flex items-center justify-center space-x-2 pt-5">
             <p>Already have an account?</p>
             <Link
-              className="underline-offset-3 text-primary hover:underline"
+              className={cn("underline-offset-3 text-primary hover:underline", {
+                "text-primary-dark pointer-events-none": isLoading,
+              })}
               href="/signin"
             >
               Sign In

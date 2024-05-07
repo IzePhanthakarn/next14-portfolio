@@ -8,17 +8,13 @@ import { cn } from "@/lib/utils";
 
 interface CustomInputProps {
   name: string;
-  className?: string;
   label: string;
-  type: string;
   placeholder: string;
 }
 
 const CustomPasswordInput = ({
   name,
-  className,
   label,
-  type,
   placeholder,
 }: CustomInputProps) => {
   const { control } = useFormContext();
@@ -28,14 +24,14 @@ const CustomPasswordInput = ({
       control={control}
       name={name}
       render={({ field }) => (
-        <div className={className}>
+        <div className="w-full">
           <p>{label}</p>
           <div className="flex w-full flex-col mt-1">
             <FormControl>
               <div className="relative">
                 <Input
                   type={showPassword ? "text" : "password"}
-                  className={cn("hide-password-toggle pr-10", className)}
+                  className="hide-password-toggle pr-10 h-12"
                   placeholder={placeholder}
                   id={name}
                   autoComplete="off"

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Tomorrow } from "next/font/google";
 import "./globals.css";
+import { StoreProvider } from "@/store/StoreProvider";
 
 const tomorrow = Tomorrow({
   subsets: ["latin"],
@@ -23,10 +24,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={tomorrow.variable}>
-        <div className="font-tomorrow">{children}</div>
-      </body>
-    </html>
+    <StoreProvider>
+      <html lang="en">
+        <body className={tomorrow.variable}>
+          <div className="font-tomorrow">{children}</div>
+        </body>
+      </html>
+    </StoreProvider>
   );
 }

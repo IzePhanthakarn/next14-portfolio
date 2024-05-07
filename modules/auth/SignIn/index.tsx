@@ -10,9 +10,16 @@ import { useForm } from "react-hook-form";
 import { signInFormSchema, SignInParams, signInDefaultValue } from "./model";
 import CustomPasswordInput from "@/components/input/CustomPasswordInput";
 import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store/store";
+import { setAccountSignUpLoading } from "@/store/account";
+import { cn } from "@/lib/utils";
 
 const SignIn = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const dispatch: AppDispatch = useDispatch();
+  const isLoading = useSelector(
+    (state: RootState) => state.account.signup.isLoading
+  );
 
   const form = useForm({
     resolver: zodResolver(signInFormSchema()),
@@ -20,12 +27,9 @@ const SignIn = () => {
     mode: "onBlur",
   });
 
-  const {
-    formState: { isValid },
-  } = form;
-
   const onSubmit = async (data: SignInParams) => {
     console.log("data >", data);
+    dispatch(setAccountSignUpLoading(true));
   };
 
   return (
@@ -39,15 +43,12 @@ const SignIn = () => {
           <CustomTextInput
             type="text"
             name="email"
-            className="w-full"
             label="Email"
             placeholder="example@mail.com"
           />
 
           <CustomPasswordInput
-            type="password"
             name="password"
-            className="w-full"
             label="Password"
             placeholder="Enter your password"
           />
@@ -55,7 +56,7 @@ const SignIn = () => {
           <div className="flex flex-col gap-4">
             <Button
               type="submit"
-              disabled={!isValid || isLoading}
+              disabled={isLoading}
               className="mt-4 sm:h-14 bg-primary"
             >
               {isLoading ? (
@@ -72,7 +73,9 @@ const SignIn = () => {
           <div className="flex items-center justify-center space-x-2 pt-5">
             <p>Don&apos;t have an account yet?</p>
             <Link
-              className="underline-offset-3 text-primary hover:underline"
+              className={cn("underline-offset-3 text-primary hover:underline", {
+                "text-primary-dark pointer-events-none": isLoading,
+              })}
               href="/signup"
             >
               Sign Up

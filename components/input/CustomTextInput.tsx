@@ -4,7 +4,6 @@ import { Input } from "../ui/input";
 
 interface CustomInputProps {
     name: string;
-    className?: string;
     label: string;
     type: string;
     placeholder: string;
@@ -12,7 +11,6 @@ interface CustomInputProps {
 
 const CustomTextInput = ({
     name,
-    className,
     label,
     type,
     placeholder,
@@ -23,13 +21,14 @@ const CustomTextInput = ({
         control={control}
         name={name}
         render={({ field }) => (
-          <div className={className}>
+          <div className="w-full">
             <p>{label}</p>
             <div className="flex w-full flex-col mt-1">
               <FormControl>
                 <Input
                   placeholder={placeholder}
                   id={name}
+                  className="h-12"
                   type={type}
                   autoComplete="off"
                   {...field}
