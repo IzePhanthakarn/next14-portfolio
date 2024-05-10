@@ -1,9 +1,13 @@
-import React from 'react'
+import ThemeSwitch from "@/components/ThemeSwitch";
+import React from "react";
 
 const HomePage = () => {
   return (
-    <div className='text-2xl'>HomePage</div>
-  )
-}
+    <>
+      <div className="text-2xl">HomePage</div>
+      <ThemeSwitch />
+    </>
+  );
+};
 
-export default HomePage
+export default HomePage;

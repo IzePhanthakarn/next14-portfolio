@@ -1,4 +1,4 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 
 const {
   default: flattenColorPalette,
@@ -7,13 +7,13 @@ const {
 const config = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './modules/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./modules/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
     "./constants/**/*.{ts,tsx}",
-	],
+  ],
   prefix: "",
   theme: {
     container: {
@@ -31,12 +31,12 @@ const config = {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        background: "#020617",
-        foreground: "#02061750",
+        background: "var(--background)",
+        error: "var(--error)",
+        foreground: "var(--foreground)",
         primary: {
-          DEFAULT: "#14B8A6",
+          DEFAULT: "var(--primary)",
           foreground: "hsl(var(--primary-foreground))",
-          dark: '#14B8A690'
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -59,7 +59,7 @@ const config = {
           foreground: "hsl(var(--popover-foreground))",
         },
         card: {
-          DEFAULT: "hsl(var(--card))",
+          DEFAULT: "var(--card)",
           foreground: "hsl(var(--card-foreground))",
         },
       },
@@ -87,18 +87,22 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"),addVariablesForColors],
-} satisfies Config
+  plugins: [
+    require("tailwindcss-animate"),
+    require("daisyui"),
+    addVariablesForColors,
+  ],
+} satisfies Config;
 
 function addVariablesForColors({ addBase, theme }: any) {
   let allColors = flattenColorPalette(theme("colors"));
   let newVars = Object.fromEntries(
     Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
   );
- 
+
   addBase({
     ":root": newVars,
   });
 }
 
-export default config
+export default config;

@@ -1,5 +1,5 @@
 import { useFormContext } from "react-hook-form";
-import { FormControl, FormField, FormLabel, FormMessage } from "../ui/form";
+import { FormControl, FormField, FormMessage } from "../ui/form";
 import { Input } from "../ui/input";
 import { useState } from "react";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
