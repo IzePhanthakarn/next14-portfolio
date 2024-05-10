@@ -22,7 +22,7 @@ const config = {
     },
     extend: {
       screens: {
-        "3xl": "1920px",
+        "3xl": "2200px",
       },
       boxShadow: {
         input: `0px 2px 3px -1px rgba(0,0,0,0.1), 0px 1px 0px 0px rgba(25,28,33,0.02), 0px 0px 0px 1px rgba(25,28,33,0.08)`,
@@ -31,7 +31,10 @@ const config = {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        background: "var(--background)",
+        background: {
+          DEFAULT: "var(--background)",
+          secondary: "var(--background-secondary)",
+        },
         error: "var(--error)",
         foreground: "var(--foreground)",
         primary: {

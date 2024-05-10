@@ -21,7 +21,9 @@
 @layer base {
   :root {
     --background: #ffffff;
-    --foreground: #ffffff;
+    --foreground: #000000;
+
+    --background-secondary: #fbfbfb;
 
     --card: #ffffff;
     --card-foreground: 222.2 84% 4.9%;
@@ -57,7 +59,9 @@
 
   .dark {
     --background: #000000;
-    --foreground: #000000;
+    --foreground: #ffffff;
+
+    --background-secondary: #151518;
 
     --card: #000000;
     --card-foreground: 210 40% 98%;
@@ -93,9 +97,5 @@
 @layer base {
   * {
     @apply border-border;
-  }
-
-  body {
-    @apply bg-background text-foreground;
   }
 }

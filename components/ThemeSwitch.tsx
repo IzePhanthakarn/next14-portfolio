@@ -6,20 +6,34 @@ import React, { useEffect, useState } from "react";
 
 const ThemeSwitch = () => {
   const { setTheme, resolvedTheme } = useTheme();
+  const [isChecked, setIsChecked] = useState(false);
+
+  useEffect(() => {
+    setIsChecked(resolvedTheme === "dark");
+  }, [resolvedTheme]);
+
+  const toggleTheme = () => {
+    const newChecked = !isChecked;
+    setIsChecked(newChecked);
+    setTheme(newChecked ? "dark" : "light");
+  };
+
   return (
     <div className="w-fit flex items-center justify-center">
-      <label className="swap swap-rotate text-white">
-        {/* this hidden checkbox controls the state */}
-        <input type="checkbox" checked={resolvedTheme === 'dark'} />
-
-        {/* sun icon */}
-        <IconSun className="swap-on" onClick={() => setTheme('dark')} size={40} />
-
-        {/* moon icon */}
-        <IconMoon className="swap-off" onClick={() => setTheme('light')} size={36} />
+      <label className="swap swap-rotate">
+        <input type="checkbox" checked={isChecked} onChange={toggleTheme} />
+        <IconSun
+          className="swap-on text-white"
+          onClick={() => setTheme("dark")}
+          size={40}
+        />
+        <IconMoon
+          className="swap-off text-black"
+          onClick={() => setTheme("light")}
+          size={36}
+        />
       </label>
     </div>
   );
 };
-
 export default ThemeSwitch;
