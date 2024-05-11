@@ -7,11 +7,14 @@ import { TreeView } from "./ui/tree-view";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { ThemeSwitcher } from "./ThemeSwitch";
+import { Button } from "./ui/button";
+import { Card } from "./ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 const Sidebar = () => {
   const pathname = usePathname();
   return (
-    <div className="hidden lg:flex w-48 xl:w-72 3xl:w-80 h-screen bg-background flex-col gap-2">
+    <div className="flex w-full lg:w-48 xl:w-72 3xl:w-80 h-screen bg-background flex-col gap-2">
       <div className="flex h-14 3xl:h-20 items-center border-b px-4 lg:h-[60px] lg:px-6">
         <Link href="/" className="flex items-center gap-4 font-semibold">
           <IconApps className="xl:h-8 xl:w-8 3xl:h-12 3xl:w-12 text-primary" />
@@ -19,6 +22,18 @@ const Sidebar = () => {
             <span className="text-primary">IZE</span> SERVICE
           </p>
         </Link>
+      </div>
+      <div className="flex sm:hidden px-2">
+        <Card className="w-full p-2 flex items-center space-x-1.5">
+          <Avatar className="cursor-pointer w-8 h-8 3xl:w-10 3xl:h-10">
+            <AvatarImage src="/profile-1.jpg" alt="profile" />
+            <AvatarFallback>PK</AvatarFallback>
+          </Avatar>
+          <div className="text-left text-xs flex flex-col space-y-0.5">
+            <p>Phanthakarn Khumphai</p>
+            <span>izephanthakarn@hotmail.com</span>
+          </div>
+        </Card>
       </div>
       <div className="flex-1">
         <nav className="grid items-start gap-1 px-1 text-sm font-medium xl:px-3">
@@ -43,6 +58,9 @@ const Sidebar = () => {
             <span className="text-sm xl:text-base">Darkmode</span>
             <ThemeSwitcher />
           </div>
+        </div>
+        <div className="block sm:hidden w-full p-2 pt-0">
+          <Button className="w-full">Sign Out</Button>
         </div>
       </div>
     </div>

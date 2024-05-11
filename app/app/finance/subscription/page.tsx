@@ -1,7 +1,8 @@
+import Subscription from "@/modules/root/Subscription";
 import React from "react";
 
 const SubscriptionPage = () => {
-  return <div>SubscriptionPage</div>;
+  return <Subscription />
 };
 
 export default SubscriptionPage;

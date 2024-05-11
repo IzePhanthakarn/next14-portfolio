@@ -1,7 +1,7 @@
-import React from "react";
+import Statement from "@/modules/root/Statement";
 
 const StatementPage = () => {
-  return <div>StatementPage</div>;
+  return <Statement />;
 };
 
 export default StatementPage;
