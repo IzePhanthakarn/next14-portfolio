@@ -7,14 +7,11 @@ import { IconCaretRight } from "@tabler/icons-react";
 function TreeView({ data }: { data: TreeDataItem[] | any }) {
   const router = useRouter();
   const navigateToRoute = (route: string) => {
-    // ทำการ navigate ไปยัง route ที่กำหนด
-    // โดยตัวอย่างนี้ใช้ useRouter จาก next/router
-    // คุณอาจต้องเปลี่ยนการ navigate ตาม library หรือ framework ที่ใช้งาน
     router.push(route);
   };
 
   return (
-    <ul role="list" className="space-y-1">
+    <ul role="list" className="space-y-1.5 xl:space-y-1">
       {data instanceof Array ? (
         data.map((item) => (
           <li key={item.id}>
@@ -23,7 +20,9 @@ function TreeView({ data }: { data: TreeDataItem[] | any }) {
                 <AccordionPrimitive.Item value="item-1">
                   <AccordionTrigger>
                     {item.icon}
-                    <p className="ml-2 3xl:text-xl">{item.label}</p>
+                    <p className="ml-1 xl:ml-2 text-xs xl:text-base 3xl:text-xl">
+                      {item.label}
+                    </p>
                   </AccordionTrigger>
                   <AccordionContent className="pl-4">
                     <TreeView
@@ -82,15 +81,14 @@ function Leaf({
   return (
     <div
       onClick={onClick}
-      //   href={route}
       className={cn(
-        "flex items-center rounded-lg py-2 transition-all hover:text-primary",
+        "flex items-center rounded xl:rounded-lg py-1.5 xl:py-2 transition-all cursor-pointer hover:text-primary",
         { "text-primary bg-background-secondary": isActive }
       )}
     >
-      <IconCaretRight className="h-6 w-6 shrink-0 opacity-0" />
+      <IconCaretRight className="h-4 w-4 xl:h-6 xl:w-6 shrink-0 opacity-0" />
       {icon}
-      <p className="ml-2 3xl:text-xl">{label}</p>
+      <p className="ml-1 xl:ml-2 text-xs xl:text-base 3xl:text-xl">{label}</p>
     </div>
   );
 }
@@ -102,12 +100,12 @@ const AccordionTrigger = React.forwardRef<
     <AccordionPrimitive.Trigger
       ref={ref}
       className={cn(
-        "flex hover:text-primary items-center py-2 font-medium transition-all first:[&[data-state=open]>svg]:rotate-90",
+        "flex hover:text-primary items-center py-1 xl:py-2 font-medium transition-all first:[&[data-state=open]>svg]:rotate-90",
         className
       )}
       {...props}
     >
-      <IconCaretRight className="h-6 w-6 shrink-0 transition-transform duration-200" />
+      <IconCaretRight className="h-4 w-4 xl:h-6 xl:w-6 shrink-0 transition-transform duration-200" />
       {children}
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>

@@ -3,8 +3,9 @@
 import { useTheme } from "next-themes";
 import { IconMoon, IconSun } from "@tabler/icons-react";
 import React, { useEffect, useState } from "react";
+import { Switch } from "./ui/switch";
 
-const ThemeSwitch = () => {
+const ThemeSwitchToggle = () => {
   const { setTheme, resolvedTheme } = useTheme();
   const [isChecked, setIsChecked] = useState(false);
 
@@ -36,4 +37,20 @@ const ThemeSwitch = () => {
     </div>
   );
 };
-export default ThemeSwitch;
+
+const ThemeSwitcher = () => {
+  const { setTheme, resolvedTheme } = useTheme();
+  const [isChecked, setIsChecked] = useState(false);
+
+  useEffect(() => {
+    setIsChecked(resolvedTheme === "dark");
+  }, [resolvedTheme]);
+
+  const toggleTheme = () => {
+    const newChecked = !isChecked;
+    setIsChecked(newChecked);
+    setTheme(newChecked ? "dark" : "light");
+  };
+  return <Switch checked={isChecked} onCheckedChange={toggleTheme} />;
+};
+export { ThemeSwitchToggle, ThemeSwitcher };

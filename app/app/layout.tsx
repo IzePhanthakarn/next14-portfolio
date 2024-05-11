@@ -1,5 +1,5 @@
+import AppHeader from "@/components/AppHeader";
 import Sidebar from "@/components/Sidebar";
-import ThemeSwitch from "@/components/ThemeSwitch";
 
 export default function RootLayout({
   children,
@@ -8,9 +8,13 @@ export default function RootLayout({
 }>) {
   return (
     <div className="flex bg-background-secondary">
-      <Sidebar />
-      <ThemeSwitch />
-      <main>{children}</main>
+      <div className="hidden lg:flex ">
+        <Sidebar />
+      </div>
+      <div className="h-screen w-full lg:w-[calc(100vw-192px)] xl:w-[calc(100vw-288px)] 3xl:w-[calc(100vw-384px)] column-1">
+        <AppHeader />
+        <main>{children}</main>
+      </div>
     </div>
-  )
+  );
 }
