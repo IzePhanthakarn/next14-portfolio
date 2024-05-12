@@ -39,7 +39,7 @@ const AppHeader = () => {
   const pathArr = pathname.slice(1).split("/");
   const currentPath = pathArr.pop();
   return (
-    <header className="flex h-14 3xl:h-20 items-center justify-between px-4 lg:h-[60px] 2xl:px-6">
+    <header className="hidden lg:flex h-14 3xl:h-20 items-center justify-between px-4 lg:h-[60px] 2xl:px-6">
       <Breadcrumb className="hidden xl:block">
         <BreadcrumbList className="3xl:text-lg">
           {pathArr.map((path) => (

@@ -3,6 +3,7 @@ import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import { cn } from "@/lib/utils";
 import { usePathname, useRouter } from "next/navigation";
 import { IconCaretRight } from "@tabler/icons-react";
+import { SheetClose } from "./sheet";
 
 function TreeView({ data }: { data: TreeDataItem[] | any }) {
   const router = useRouter();
@@ -79,17 +80,19 @@ function Leaf({
   const pathname = usePathname();
   const isActive = pathname === route;
   return (
-    <div
-      onClick={onClick}
-      className={cn(
-        "flex items-center rounded xl:rounded-lg py-1.5 xl:py-2 transition-all cursor-pointer hover:text-primary",
-        { "text-primary bg-background-secondary": isActive }
-      )}
-    >
-      <IconCaretRight className="h-4 w-4 xl:h-6 xl:w-6 shrink-0 opacity-0" />
-      {icon}
-      <p className="ml-1 xl:ml-2 text-xs xl:text-base 3xl:text-xl">{label}</p>
-    </div>
+    <SheetClose className="w-full py-1">
+      <div
+        onClick={onClick}
+        className={cn(
+          "flex items-center rounded xl:rounded-lg py-1.5 xl:py-2 transition-all cursor-pointer hover:text-primary",
+          { "text-primary bg-background-secondary": isActive }
+        )}
+      >
+        <IconCaretRight className="h-4 w-4 xl:h-6 xl:w-6 shrink-0 opacity-0" />
+        {icon}
+        <p className="ml-1 xl:ml-2 text-xs xl:text-base 3xl:text-xl">{label}</p>
+      </div>
+    </SheetClose>
   );
 }
 const AccordionTrigger = React.forwardRef<
