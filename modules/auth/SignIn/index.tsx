@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { signInFormSchema, SignInParams, signInDefaultValue } from "./model";
+import { signInFormSchema, signInDefaultValue } from "./model";
 import CustomPasswordInput from "@/components/input/CustomPasswordInput";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,9 +13,13 @@ import { AppDispatch, RootState } from "@/store/store";
 import { setAccountSignUpLoading } from "@/store/account";
 import { cn } from "@/lib/utils";
 import { IconLoader2 } from "@tabler/icons-react";
+import { signin } from "@/lib/auth";
+import { SigninDTO } from "@/services/session/model";
+import { useRouter } from "next/navigation";
 
 const SignIn = () => {
   const dispatch: AppDispatch = useDispatch();
+  const route = useRouter();
   const isLoading = useSelector(
     (state: RootState) => state.account.signup.isLoading
   );
@@ -26,9 +30,13 @@ const SignIn = () => {
     mode: "onBlur",
   });
 
-  const onSubmit = async (data: SignInParams) => {
-    console.log("data >", data);
+  const onSubmit = async (data: SigninDTO) => {
     dispatch(setAccountSignUpLoading(true));
+    const response = await dispatch(signin(data));
+    if (response) {
+      dispatch(setAccountSignUpLoading(false));
+      route.push('/app/dashboard')
+    }
   };
 
   return (

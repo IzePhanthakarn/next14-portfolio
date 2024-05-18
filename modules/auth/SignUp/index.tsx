@@ -26,7 +26,6 @@ const SignUp = () => {
   });
 
   const onSubmit = async (data: SignUpParams) => {
-    console.log("data >", data);
     dispatch(setAccountSignUpLoading(true));
   };
 

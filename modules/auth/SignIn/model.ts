@@ -1,3 +1,4 @@
+import { SigninDTO } from "@/services/session/model";
 import { z } from "zod";
 
 export const signInFormSchema = () =>
@@ -6,12 +7,7 @@ export const signInFormSchema = () =>
     password: z.string().min(8, "Password must have at least 8 characters."),
   });
 
-export type SignInParams = {
-  email: string;
-  password: string;
-};
-
-export const signInDefaultValue: SignInParams = {
+export const signInDefaultValue: SigninDTO = {
   email: "",
   password: "",
 };
