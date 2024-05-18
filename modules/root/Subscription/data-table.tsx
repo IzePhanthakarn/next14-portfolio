@@ -248,7 +248,7 @@ export function DataTableDemo() {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <div className="rounded-md border h-[calc(100vh-640px)] 3xl:h-[calc(100vh-660px)] overflow-y-auto">
+      <div className="custom-table rounded-md border h-[calc(100vh-640px)] 3xl:h-[calc(100vh-660px)] overflow-y-auto">
         <Table className="relative">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (

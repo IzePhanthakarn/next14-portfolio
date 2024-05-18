@@ -8,6 +8,22 @@
   box-sizing: border-box;
 }
 
+.custom-table::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-table::-webkit-scrollbar-track {
+  border-radius: 8px;
+  background-color: var(--background-secondary);
+}
+
+.custom-table::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-clip: content-box;
+  background-color: var(--primary);
+  border: 1px solid transparent;
+}
+
 @layer utilities {
   .text-16 {
     font-size: 16px;
@@ -42,9 +58,7 @@
     --error: #DC143C;
     --success: #fe0;
     --warning: #fee;
-    --info: #fea
-
-    --muted: 210 40% 96.1%;
+    --info: #fea --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
     --accent: 210 40% 96.1%;
@@ -83,9 +97,7 @@
     --error: #DC143C;
     --success: #fe0;
     --warning: #fee;
-    --info: #fea
-
-    --muted: 217.2 32.6% 17.5%;
+    --info: #fea --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
 
     --accent: 217.2 32.6% 17.5%;
