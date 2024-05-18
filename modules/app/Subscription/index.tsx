@@ -8,6 +8,20 @@ import { IconPlus } from "@tabler/icons-react";
 import _ from "lodash";
 import { DataTableDemo } from "./data-table";
 import * as React from "react";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { Label } from "@/components/ui/label";
+import CustomTextInput from "@/components/input/CustomTextInput";
+import { Input } from "@/components/ui/input";
+import AddSubscription from "./AddSubscription";
 
 const Subscription = () => {
   const labels = ["Youtube", "3BB", "Netflix", "Prime Video", "AIS"];
@@ -23,10 +37,7 @@ const Subscription = () => {
     <div className="px-4 space-y-1">
       <header className="flex justify-between py-2">
         <h1 className="text-2xl font-medium">Subscription</h1>
-        <Button className="space-x-1" variant="success">
-          <IconPlus size={20} />
-          <p>Add Subscription</p>
-        </Button>
+        <AddSubscription />
       </header>
       <div className="h-full flex-grow w-full space-y-4">
         <div className="flex gap-4">
