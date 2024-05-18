@@ -1,6 +1,6 @@
 "use client";
 
-import Loading from "@/components/Loading";
+import Loader from "@/components/Loader";
 import { BackgroundBeams } from "@/components/ui/background-beams";
 import { Card } from "@/components/ui/card";
 import { getSession } from "@/lib/session";
@@ -34,7 +34,7 @@ export default function RootLayout({
   }, [router, dispatch]);
 
   if (loading) {
-    return <Loading />;
+    return <Loader />;
   }
 
   if (!_.isEmpty(user)) {

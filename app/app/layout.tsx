@@ -1,7 +1,7 @@
 "use client";
 
 import AppHeader from "@/components/AppHeader";
-import Loading from "@/components/Loading";
+import Loader from "@/components/Loader";
 import Sidebar from "@/components/Sidebar";
 import { getSession } from "@/lib/session";
 import { AppDispatch } from "@/store/store";
@@ -34,7 +34,7 @@ export default function RootLayout({
   }, [router, dispatch]);
 
   if (loading) {
-    return <Loading />;
+    return <Loader />;
   }
 
   if (_.isEmpty(user)) {

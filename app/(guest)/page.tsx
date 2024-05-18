@@ -1,11 +1,7 @@
-import React from "react";
+import Loader from "@/components/Loader";
 
 const HomePage = () => {
-  return (
-    <>
-      <div className="text-2xl">HomePage</div>
-    </>
-  );
+  return <Loader />;
 };
 
 export default HomePage;
