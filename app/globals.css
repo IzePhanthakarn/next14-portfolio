@@ -56,9 +56,10 @@
     --secondary-foreground: 222.2 47.4% 11.2%;
 
     --error: #DC143C;
-    --success: #fe0;
-    --warning: #fee;
-    --info: #fea --muted: 210 40% 96.1%;
+    --success: #22c55e;
+    --warning: #FACC14;
+    --info: #223DEE;
+    --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
     --accent: 210 40% 96.1%;
@@ -95,9 +96,10 @@
     --secondary-foreground: 210 40% 98%;
 
     --error: #DC143C;
-    --success: #fe0;
-    --warning: #fee;
-    --info: #fea --muted: 217.2 32.6% 17.5%;
+    --success: #22c55e;
+    --warning: #FACC14;
+    --info: #223DEE;
+    --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
 
     --accent: 217.2 32.6% 17.5%;

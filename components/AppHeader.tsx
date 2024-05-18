@@ -8,11 +8,9 @@ import {
 } from "./ui/breadcrumb";
 import { Input } from "./ui/input";
 import {
-  IconApps,
   IconBell,
   IconCategory,
   IconChevronRight,
-  IconNotification,
   IconReport,
   IconSearch,
   IconSettings,
@@ -22,7 +20,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
@@ -33,11 +30,28 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import Sidebar from "./Sidebar";
+import { AppDispatch } from "@/store/store";
+import { useDispatch } from "react-redux";
+import { getSession } from "@/lib/session";
+import { useEffect, useState } from "react";
+import _ from "lodash";
+import { logout } from "@/lib/auth";
 
 const AppHeader = () => {
   const pathname = usePathname();
+  const dispatch: AppDispatch = useDispatch();
   const pathArr = pathname.slice(1).split("/");
   const currentPath = pathArr.pop();
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const fetchSession = async () => {
+      const session = await dispatch(getSession());
+      setUser(session);
+    };
+
+    fetchSession();
+  }, [dispatch]);
   return (
     <header className="hidden lg:flex h-14 3xl:h-20 items-center justify-between px-4 lg:h-[60px] 2xl:px-6">
       <Breadcrumb className="hidden xl:block">
@@ -101,10 +115,14 @@ const AppHeader = () => {
                 <AvatarImage src="/profile-1.jpg" alt="profile" />
                 <AvatarFallback>PK</AvatarFallback>
               </Avatar>
-              <div className="text-left hidden xl:block">
-                <p>Phanthakarn Khumphai</p>
-                <span>izephanthakarn@hotmail.com</span>
-              </div>
+              {!_.isEmpty(user) && (
+                <div className="text-left hidden xl:block">
+                  <p>
+                    {user.firstname} {user.lastname}
+                  </p>
+                  <span>{user.email}</span>
+                </div>
+              )}
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-40">
@@ -122,7 +140,9 @@ const AppHeader = () => {
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <div className="p-0.5">
-              <Button className="w-full h-8">Sign Out</Button>
+              <Button onClick={() => logout()} className="w-full h-8">
+                Sign Out
+              </Button>
             </div>
           </DropdownMenuContent>
         </DropdownMenu>

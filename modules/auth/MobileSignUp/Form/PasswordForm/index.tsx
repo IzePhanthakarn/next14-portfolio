@@ -14,9 +14,13 @@ import { setAccountSignUpForm, setAccountSignUpLoading } from "@/store/account";
 import StepProgress from "../../StepProgress";
 import CustomPasswordInput from "@/components/input/CustomPasswordInput";
 import { Loader2 } from "lucide-react";
+import { SignupDTO } from "@/services/session/model";
+import { signup } from "@/lib/auth";
+import { useRouter } from "next/navigation";
 
 const PasswordForm = () => {
   const dispatch: AppDispatch = useDispatch();
+  const router = useRouter();
   const step = useSelector((state: RootState) => state.account.signup.step);
   const signupForm = useSelector(
     (state: RootState) => state.account.signup.form
@@ -30,9 +34,21 @@ const PasswordForm = () => {
     mode: "onBlur",
   });
 
-  const onSubmit = (data: PasswordParams) => {
+  const onSubmit = async (data: PasswordParams) => {
     dispatch(setAccountSignUpForm({ ...signupForm, ...data }));
     dispatch(setAccountSignUpLoading(true));
+    const param: SignupDTO = {
+      firstname: signupForm.firstName,
+      lastname: signupForm.lastName,
+      email: signupForm.email,
+      phone: signupForm.phone,
+      password: data.password,
+    };
+    const response = await dispatch(signup(param));
+    if (response) {
+      router.push("/signin");
+    }
+    dispatch(setAccountSignUpLoading(false));
   };
   return (
     <div>

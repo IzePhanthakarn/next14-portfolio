@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Tomorrow } from "next/font/google";
 import "./globals.css";
 import Providers from "./providers";
+import { Toaster } from "@/components/ui/sonner";
 
 const tomorrow = Tomorrow({
   subsets: ["latin"],
@@ -24,14 +25,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-
-      <html lang="en" suppressHydrationWarning>
-        <body className={tomorrow.variable}>
-          <Providers>
-            <main className="font-tomorrow">{children}</main>
-          </Providers>
-        </body>
-      </html>
-
+    <html lang="en" suppressHydrationWarning>
+      <body className={tomorrow.variable}>
+        <Providers>
+          <main className="font-tomorrow">{children}</main>
+          <Toaster />
+        </Providers>
+      </body>
+    </html>
   );
 }

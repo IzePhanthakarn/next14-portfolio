@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { signUpFormSchema, SignUpParams, signUpDefaultValue } from "./model";
 import CustomPasswordInput from "@/components/input/CustomPasswordInput";
@@ -12,9 +11,15 @@ import { AppDispatch, RootState } from "@/store/store";
 import { useDispatch, useSelector } from "react-redux";
 import { cn } from "@/lib/utils";
 import { setAccountSignUpLoading } from "@/store/account";
+import { signup } from "@/lib/auth";
+import { useRouter } from "next/navigation";
+import { SignupDTO } from "@/services/session/model";
+import { toast } from "sonner";
+import { formatDate } from "@/lib/date";
 
 const SignUp = () => {
   const dispatch: AppDispatch = useDispatch();
+  const router = useRouter();
   const isLoading = useSelector(
     (state: RootState) => state.account.signup.isLoading
   );
@@ -27,6 +32,18 @@ const SignUp = () => {
 
   const onSubmit = async (data: SignUpParams) => {
     dispatch(setAccountSignUpLoading(true));
+    const param: SignupDTO = {
+      firstname: data.firstNameD,
+      lastname: data.lastNameD,
+      email: data.email,
+      phone: data.phone,
+      password: data.password,
+    };
+    const response = await dispatch(signup(param));
+    if (response) {
+      router.push("/signin");
+    }
+    dispatch(setAccountSignUpLoading(false));
   };
 
   return (

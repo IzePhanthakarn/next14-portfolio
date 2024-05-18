@@ -1,10 +1,26 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { SigninDTO } from "./model";
+import { SigninDTO, SignupDTO } from "./model";
 import axios from "axios";
 import { BASE_URL_API } from "@/config";
 import API_PATH from "@/constants/api";
 import { getToken } from "@/lib/session";
 import { AUTH } from "@/constants";
+
+// Sign Up
+export const postSignUp = createAsyncThunk(
+  "PostSignIn/post",
+  async (params: SignupDTO, thunkAPi) => {
+    try {
+      const response = await axios.post(
+        `${BASE_URL_API}${API_PATH.AUTH.SIGN_UP}`,
+        params
+      );
+      return response.data;
+    } catch (err) {
+      return thunkAPi.rejectWithValue([]);
+    }
+  }
+);
 
 // Sign In
 export const postSignIn = createAsyncThunk(
