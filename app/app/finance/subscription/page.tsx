@@ -1,4 +1,4 @@
-import Subscription from "@/modules/root/Subscription";
+import Subscription from "@/modules/app/Subscription";
 import React from "react";
 
 const SubscriptionPage = () => {
