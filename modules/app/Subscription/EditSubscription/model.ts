@@ -4,6 +4,7 @@ import { z } from "zod";
 
 export const subscriptionFormSchema = () =>
   z.object({
+    id: z.number(),
     name: z.string().trim().min(1, "Please enter your subscription name"),
     amount: z.coerce.number().positive(),
     tag: z.string().startsWith("#").length(7),

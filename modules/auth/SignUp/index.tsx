@@ -14,8 +14,6 @@ import { setAccountSignUpLoading } from "@/store/account";
 import { signup } from "@/lib/auth";
 import { useRouter } from "next/navigation";
 import { SignupDTO } from "@/services/session/model";
-import { toast } from "sonner";
-import { formatDate } from "@/lib/date";
 
 const SignUp = () => {
   const dispatch: AppDispatch = useDispatch();

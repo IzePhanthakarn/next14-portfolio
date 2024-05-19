@@ -1,10 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useState } from "react";
-import {
-  dataOption,
-  subscriptionDefaultValue,
-  subscriptionFormSchema,
-} from "./model";
+import { dataOption, subscriptionFormSchema } from "./model";
 import { SubscriptionDTO } from "@/services/app/subscription/model";
 import { Form } from "@/components/ui/form";
 import CustomTextInput from "@/components/input/CustomTextInput";
@@ -12,19 +8,26 @@ import CustomSelect from "@/components/input/CustomSelect";
 import { SheetClose, SheetFooter } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
-import { AppDispatch } from "@/store/store";
-import { useDispatch } from "react-redux";
-import { addSubscription } from "./service";
+import { AppDispatch, RootState } from "@/store/store";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { editSubscription } from "./service";
 import { IconLoader2 } from "@tabler/icons-react";
 import _ from "lodash";
 
-const FormComponent = () => {
+const FormComponent = ({ selectedIndex }: { selectedIndex: number }) => {
   const dispatch: AppDispatch = useDispatch();
+  const { list } = useSelector(
+    (state: RootState) => ({
+      list: state.app.subscription.list,
+    }),
+    shallowEqual
+  );
+  const dataSelect = list.find((item) => item.index === selectedIndex);
   const closeRef = React.useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState(false);
   const form = useForm({
     resolver: zodResolver(subscriptionFormSchema()),
-    defaultValues: subscriptionDefaultValue,
+    defaultValues: dataSelect,
     mode: "onBlur",
   });
 
@@ -34,7 +37,7 @@ const FormComponent = () => {
 
   const onSubmit = async (data: SubscriptionDTO) => {
     setIsLoading(true);
-    const response = await dispatch(addSubscription(data));
+    const response = await dispatch(editSubscription(data));
     if (response) {
       closeRef.current?.click();
       window.location.reload();
@@ -89,7 +92,7 @@ const FormComponent = () => {
                 Loading...
               </div>
             ) : (
-              <p>Add Subscription</p>
+              <p>Save Subscription</p>
             )}
           </Button>
         </div>

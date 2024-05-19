@@ -11,6 +11,8 @@ const buttonVariants = cva(
       variant: {
         default: "bg-primary text-white hover:bg-primary/90",
         success: "bg-emerald-600 text-white hover:bg-emerald-700",
+        error: "bg-error text-white hover:bg-error-focus",
+        info: "bg-info text-white hover:bg-info-focus",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:

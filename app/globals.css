@@ -56,9 +56,11 @@
     --secondary-foreground: 222.2 47.4% 11.2%;
 
     --error: #DC143C;
+    --error-focus: #9e102d;
     --success: #22c55e;
     --warning: #FACC14;
-    --info: #223DEE;
+    --info: #06b6d4;
+    --info-focus: #0590a8;
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
@@ -96,9 +98,11 @@
     --secondary-foreground: 210 40% 98%;
 
     --error: #DC143C;
+    --error-focus: #9e102d;
     --success: #22c55e;
     --warning: #FACC14;
-    --info: #223DEE;
+    --info: #06b6d4;
+    --info-focus: #0590a8;
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
 

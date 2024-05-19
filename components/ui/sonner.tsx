@@ -1,28 +1,33 @@
-"use client"
+"use client";
 
-import { useClientMediaQuery } from "@/hooks/useClientMediaQuery"
-import { IconAlertTriangle, IconCircleDashedCheck, IconFileAlert, IconInfoHexagon, IconLoader } from "@tabler/icons-react"
-import { useTheme } from "next-themes"
-import { Toaster as Sonner } from "sonner"
+import { useClientMediaQuery } from "@/hooks/useClientMediaQuery";
+import {
+  IconAlertTriangle,
+  IconCircleDashedCheck,
+  IconFileAlert,
+  IconInfoHexagon,
+  IconLoader,
+} from "@tabler/icons-react";
+import { useTheme } from "next-themes";
+import { Toaster as Sonner } from "sonner";
 
-type ToasterProps = React.ComponentProps<typeof Sonner>
+type ToasterProps = React.ComponentProps<typeof Sonner>;
 
 const Toaster = ({ ...props }: ToasterProps) => {
-  const { theme = "system" } = useTheme()
-  const isMobile = useClientMediaQuery('(max-width: 640px)')
-  console.log('isMobile >', isMobile ? 'top-center' : 'top-right')
+  const { theme = "system" } = useTheme();
+  const isMobile = useClientMediaQuery("(max-width: 640px)");
 
   return (
     <Sonner
       theme={theme as ToasterProps["theme"]}
       className="toaster group"
-      position={isMobile ? 'top-center' : 'top-right'}
+      position={isMobile ? "top-center" : "top-right"}
       icons={{
         success: <IconCircleDashedCheck className="text-success" />,
-        info: <IconInfoHexagon size={30}  className="text-info" />,
-        warning: <IconAlertTriangle size={30}  className="text-warning" />,
-        error: <IconFileAlert size={30}  className="text-error" />,
-        loading: <IconLoader size={30}  />,
+        info: <IconInfoHexagon size={30} className="text-info" />,
+        warning: <IconAlertTriangle size={30} className="text-warning" />,
+        error: <IconFileAlert size={30} className="text-error" />,
+        loading: <IconLoader size={30} />,
       }}
       toastOptions={{
         classNames: {
@@ -37,7 +42,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
       }}
       {...props}
     />
-  )
-}
+  );
+};
 
-export { Toaster }
+export { Toaster };

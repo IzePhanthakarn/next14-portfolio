@@ -35,7 +35,14 @@ const config = {
           DEFAULT: "var(--background)",
           secondary: "var(--background-secondary)",
         },
-        error: "var(--error)",
+        error: {
+          DEFAULT: "var(--error)",
+          focus: "var(--error-focus)",
+        },
+        info: {
+          DEFAULT: "var(--info)",
+          focus: "var(--info-focus)",
+        },
         foreground: "var(--foreground)",
         primary: {
           DEFAULT: "var(--primary)",

@@ -22,3 +22,14 @@ declare interface AnimatedCounterProps {
   prefix?: string;
   decimals?: number;
 }
+
+declare interface Dataset {
+  label: string;
+  data: number[];
+  backgroundColor: string[];
+}
+
+declare interface ChartData {
+  labels: string[];
+  datasets: Dataset[];
+}
